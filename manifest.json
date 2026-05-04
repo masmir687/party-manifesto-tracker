@@ -1,0 +1,17 @@
+{
+  "name": "WB 2026 Promise Tracker",
+  "short_name": "WB2026",
+  "description": "Election Manifesto & Completion Status Tracker",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f4f7f6",
+  "theme_color": "#FF9933",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/2950/2950137.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -8,33 +8,63 @@
     "days": 1825
   },
   {
-    "id": "2",
+    "id": "2.1",
     "category": "Sankalp Patra",
-    "title": "DA arrears + 7th Pay Commission",
-    "desc": "Clear all pending Dearness Allowance for government employees and pensioners; implement 7th Pay Commission recommendations.",
+    "title": "DA arrears",
+    "desc": "Clear all pending Dearness Allowance for government employees and pensioners.",
     "timeline_text": "Within 45 days",
-    "days": 45
+    "days": 45,
+    "parentId": "2"
   },
   {
-    "id": "3",
+    "id": "2.2",
     "category": "Sankalp Patra",
-    "title": "1 crore jobs + ₹3,000 for unemployed youth",
-    "desc": "Create 1 crore new jobs and self-employment opportunities; monthly ₹3,000 financial aid to unemployed youth.",
+    "title": "7th Pay Commission",
+    "desc": "Implement 7th Pay Commission recommendations.",
+    "timeline_text": "Within 45 days",
+    "days": 45,
+    "parentId": "2"
+  },
+  {
+    "id": "3.1",
+    "category": "Sankalp Patra",
+    "title": "1 crore jobs",
+    "desc": "Create 1 crore new jobs and self-employment opportunities.",
     "timeline_text": "5 years",
-    "days": 1825
+    "days": 1825,
+    "parentId": "3"
   },
   {
-    "id": "4",
+    "id": "3.2",
     "category": "Sankalp Patra",
-    "title": "Women's safety — Durga Suraksha Squads + 33% reservation",
-    "desc": "Women-only police battalions, 'Durga Suraksha Sahaya' scheme; 33% reservation for women in all state government jobs including police.",
+    "title": "₹3,000 for unemployed youth",
+    "desc": "Monthly ₹3,000 financial aid to unemployed youth.",
+    "timeline_text": "5 years",
+    "days": 1825,
+    "parentId": "3"
+  },
+  {
+    "id": "4.1",
+    "category": "Sankalp Patra",
+    "title": "Durga Suraksha Squads",
+    "desc": "Women-only police battalions, 'Durga Suraksha Sahaya' scheme.",
     "timeline_text": "On forming government",
-    "days": 1
+    "days": 1,
+    "parentId": "4"
+  },
+  {
+    "id": "4.2",
+    "category": "Sankalp Patra",
+    "title": "33% reservation for women",
+    "desc": "33% reservation for women in all state government jobs including police.",
+    "timeline_text": "On forming government",
+    "days": 1,
+    "parentId": "4"
   },
   {
     "id": "5",
     "category": "Sankalp Patra",
-    "title": "₹3,000 monthly financial support for women",
+    "title": "₹3,000 monthly support for women",
     "desc": "Direct bank transfer of ₹3,000 to every eligible woman beneficiary each month.",
     "timeline_text": "Monthly (5 year commitment)",
     "days": 1825
@@ -42,7 +72,7 @@
   {
     "id": "6",
     "category": "Sankalp Patra",
-    "title": "Agricultural support — rice, potato, mango",
+    "title": "Agricultural support",
     "desc": "Enhanced MSP and subsidies for key crops; full rollout of PM Kisan Samman Nidhi.",
     "timeline_text": "5 years",
     "days": 1825
@@ -50,72 +80,112 @@
   {
     "id": "7",
     "category": "Sankalp Patra",
-    "title": "Fishermen welfare — PM Matsya Sampada Yojana",
-    "desc": "Register all fishermen under the scheme; develop modern fish processing units; make West Bengal a leading fisheries export hub.",
+    "title": "Fishermen welfare",
+    "desc": "PM Matsya Sampada Yojana; develop modern fish processing units.",
     "timeline_text": "5 years",
     "days": 1825
   },
   {
-    "id": "8",
+    "id": "8.1",
     "category": "Sankalp Patra",
-    "title": "Uniform Civil Code (UCC) + anti-cattle smuggling law",
-    "desc": "Legislate and implement UCC ensuring a single uniform set of laws for all citizens; strict law to end cattle smuggling across Bengal's borders.",
+    "title": "Uniform Civil Code (UCC)",
+    "desc": "Legislate and implement UCC ensuring a single uniform set of laws for all citizens.",
     "timeline_text": "Within 6 months",
-    "days": 180
+    "days": 180,
+    "parentId": "8"
   },
   {
-    "id": "9",
+    "id": "8.2",
     "category": "Sankalp Patra",
-    "title": "Tea industry revival + jute modernisation",
-    "desc": "Rejuvenate old tea gardens; strengthen global branding of Darjeeling Tea; develop tea tourism; modernise jute industry.",
-    "timeline_text": "5 years",
-    "days": 1825
+    "title": "Anti-cattle smuggling law",
+    "desc": "Strict law to end cattle smuggling across Bengal's borders.",
+    "timeline_text": "Within 6 months",
+    "days": 180,
+    "parentId": "8"
   },
   {
-    "id": "10",
+    "id": "9.1",
     "category": "Sankalp Patra",
-    "title": "Healthcare — Ayushman Bharat + AIIMS in North Bengal",
-    "desc": "Full implementation of Ayushman Bharat; free HPV vaccination; breast cancer screening; establish AIIMS, IIT, and IIM in North Bengal.",
+    "title": "Tea industry revival",
+    "desc": "Rejuvenate old tea gardens; strengthen global branding of Darjeeling Tea.",
     "timeline_text": "5 years",
-    "days": 1825
+    "days": 1825,
+    "parentId": "9"
+  },
+  {
+    "id": "9.2",
+    "category": "Sankalp Patra",
+    "title": "Jute Modernisation",
+    "desc": "Modernise jute industry and support related workers.",
+    "timeline_text": "5 years",
+    "days": 1825,
+    "parentId": "9"
+  },
+  {
+    "id": "10.1",
+    "category": "Sankalp Patra",
+    "title": "Ayushman Bharat",
+    "desc": "Full implementation of Ayushman Bharat; cancer screening.",
+    "timeline_text": "5 years",
+    "days": 1825,
+    "parentId": "10"
+  },
+  {
+    "id": "10.2",
+    "category": "Sankalp Patra",
+    "title": "AIIMS in North Bengal",
+    "desc": "Establish AIIMS, IIT, and IIM in North Bengal.",
+    "timeline_text": "5 years",
+    "days": 1825,
+    "parentId": "10"
   },
   {
     "id": "11",
     "category": "Sankalp Patra",
-    "title": "White Paper on TMC governance failures",
-    "desc": "Three White Papers exposing corruption, political violence, and law-and-order collapse over 15 years of TMC rule.",
+    "title": "White Paper on TMC failures",
+    "desc": "Three White Papers exposing corruption and law-and-order collapse.",
     "timeline_text": "5 years",
     "days": 1825
   },
   {
     "id": "12",
     "category": "Sankalp Patra",
-    "title": "End syndicate culture and 'cut money'",
-    "desc": "Dismantle grassroots-level syndicate networks; eliminate the 'cut money' practice from public contracting.",
+    "title": "End syndicate culture",
+    "desc": "Dismantle grassroots-level syndicate networks; eliminate 'cut money'.",
     "timeline_text": "5 years",
     "days": 1825
   },
   {
     "id": "13",
     "category": "Sankalp Patra",
-    "title": "Linguistic recognition — Kurmali and Rajbanshi",
-    "desc": "Include Kurmali and Rajbanshi languages in the Eighth Schedule of the Constitution, giving them official recognition.",
+    "title": "Linguistic recognition",
+    "desc": "Include Kurmali and Rajbanshi languages in the Eighth Schedule.",
     "timeline_text": "5 years",
     "days": 1825
   },
   {
-    "id": "14",
+    "id": "14.1",
     "category": "Sankalp Patra",
-    "title": "Vande Mataram Museum + religious freedom law",
-    "desc": "Establish a Vande Mataram Museum to promote national heritage; enact a law guaranteeing freedom of religious practices.",
+    "title": "Vande Mataram Museum",
+    "desc": "Establish a Vande Mataram Museum to promote national heritage.",
     "timeline_text": "5 years",
-    "days": 1825
+    "days": 1825,
+    "parentId": "14"
+  },
+  {
+    "id": "14.2",
+    "category": "Sankalp Patra",
+    "title": "Religious freedom law",
+    "desc": "Enact a law guaranteeing freedom of religious practices.",
+    "timeline_text": "5 years",
+    "days": 1825,
+    "parentId": "14"
   },
   {
     "id": "15",
     "category": "Sankalp Patra",
     "title": "Political violence commission",
-    "desc": "Constitute a commission led by a retired Supreme Court judge to investigate all instances of political violence.",
+    "desc": "Constitute a commission led by a retired Supreme Court judge.",
     "timeline_text": "5 years",
     "days": 1825
   },
@@ -123,7 +193,7 @@
     "id": "M1",
     "category": "Modi Guarantees",
     "title": "Replace fear with trust",
-    "desc": "BJP government will eliminate the atmosphere of fear prevailing in Bengal and restore faith in the rule of law.",
+    "desc": "Restore faith in the rule of law.",
     "timeline_text": "5 years",
     "days": 1825
   },
@@ -131,15 +201,15 @@
     "id": "M2",
     "category": "Modi Guarantees",
     "title": "Accountable administration",
-    "desc": "The administrative machinery will be fully accountable and answerable to the citizens it serves.",
+    "desc": "The administrative machinery will be fully accountable.",
     "timeline_text": "5 years",
     "days": 1825
   },
   {
     "id": "M3",
     "category": "Modi Guarantees",
-    "title": "Reopen all scam and corruption files",
-    "desc": "Every file on scams, corruption, injustice against women, and rape cases will be reopened and acted upon.",
+    "title": "Reopen scam files",
+    "desc": "Every file on scams and corruption will be reopened.",
     "timeline_text": "5 years",
     "days": 1825
   },
@@ -147,15 +217,15 @@
     "id": "M4",
     "category": "Modi Guarantees",
     "title": "No one above the law",
-    "desc": "Ministers, officials or party workers engaged in corruption will all be held legally accountable.",
+    "desc": "Ministers and officials will be held legally accountable.",
     "timeline_text": "5 years",
     "days": 1825
   },
   {
     "id": "M5",
     "category": "Modi Guarantees",
-    "title": "CAA rights for refugees; deportation of infiltrators",
-    "desc": "Refugees will receive every constitutional right and privilege; infiltrators will be deported.",
+    "title": "CAA + Infiltrator deportation",
+    "desc": "Refugees rights + infiltrators deportation.",
     "timeline_text": "5 years",
     "days": 1825
   },
@@ -163,31 +233,31 @@
     "id": "M6",
     "category": "Modi Guarantees",
     "title": "7th Pay Commission — immediate",
-    "desc": "Implement the 7th Pay Commission the moment a BJP government is formed.",
+    "desc": "Implement the 7th Pay Commission immediately.",
     "timeline_text": "Immediately",
     "days": 1
   },
   {
     "id": "A1",
     "category": "Extended",
-    "title": "MSP guarantee for all key crops",
-    "desc": "Ensure fair Minimum Support Price for paddy, potato, mango and other staple crops.",
+    "title": "MSP guarantee",
+    "desc": "Ensure fair MSP for paddy, potato, and mango.",
     "timeline_text": "5 years",
     "days": 1825
   },
   {
     "id": "A2",
     "category": "Extended",
-    "title": "Industrial parks + MSME promotion",
-    "desc": "Set up new industrial parks, simplify business approvals through a single-window clearance system.",
+    "title": "Industrial parks",
+    "desc": "Set up new industrial parks; simplify approvals.",
     "timeline_text": "5 years",
     "days": 1825
   },
   {
     "id": "A3",
     "category": "Extended",
-    "title": "National Education Policy (NEP) + STEM",
-    "desc": "Implement NEP fully; introduce coding and STEM education in schools.",
+    "title": "NEP + STEM",
+    "desc": "Implement NEP fully; introduce coding in schools.",
     "timeline_text": "5 years",
     "days": 1825
   },
@@ -195,15 +265,15 @@
     "id": "A4",
     "category": "Extended",
     "title": "Enhanced pensions",
-    "desc": "Increase pension amounts for all vulnerable groups; extend housing benefits.",
+    "desc": "Increase pension amounts; extend PM Awas Yojana.",
     "timeline_text": "5 years",
     "days": 1825
   },
   {
     "id": "A5",
     "category": "Extended",
-    "title": "New highways + metro completion",
-    "desc": "Build highways connecting North and South Bengal; complete pending Kolkata metro projects.",
+    "title": "Infrastructure",
+    "desc": "Connect North/South Bengal; complete metro projects.",
     "timeline_text": "5 years",
     "days": 1825
   },
@@ -211,55 +281,55 @@
     "id": "A6",
     "category": "Extended",
     "title": "Tourism development",
-    "desc": "Promote eco-tourism across all three key zones; develop spiritual tourism circuits.",
+    "desc": "Promote eco-tourism; spiral circuits.",
     "timeline_text": "5 years",
     "days": 1825
   },
   {
     "id": "A7",
     "category": "Extended",
-    "title": "Darjeeling Tea global branding",
-    "desc": "Create an internationally promoted Darjeeling Tea brand; develop tea-garden tourism.",
+    "title": "Darjeeling Tea branding",
+    "desc": "Create internationally promoted brand.",
     "timeline_text": "5 years",
     "days": 1825
   },
   {
     "id": "A8",
     "category": "Extended",
-    "title": "UNESCO recognition for festivals",
-    "desc": "Push for UNESCO cultural heritage recognition for Durga Puja and other major festivals.",
+    "title": "UNESCO festivals",
+    "desc": "Push for UNESCO recognition for Durga Puja.",
     "timeline_text": "5 years",
     "days": 1825
   },
   {
     "id": "A9",
     "category": "Extended",
-    "title": "CAA citizenship processing",
-    "desc": "Speed up citizenship applications under the Citizenship Amendment Act for eligible refugees.",
+    "title": "CAA processing",
+    "desc": "Speed up citizenship applications.",
     "timeline_text": "5 years",
     "days": 1825
   },
   {
     "id": "A10",
     "category": "Extended",
-    "title": "Restore Asansol's industrial strength",
-    "desc": "Revive industrial base of Asansol; dismantle mafia networks.",
+    "title": "Revive Asansol Industry",
+    "desc": "Revive industrial base; dismantle mafia.",
     "timeline_text": "5 years",
     "days": 1825
   },
   {
     "id": "A11",
     "category": "Extended",
-    "title": "Free HPV vaccination + institutional delivery",
-    "desc": "Provide free HPV vaccination and cancer screening; ensure free institutional delivery support.",
+    "title": "HPV vaccination",
+    "desc": "Free HPV vaccination and cancer screening.",
     "timeline_text": "5 years",
     "days": 1825
   },
   {
     "id": "A12",
     "category": "Extended",
-    "title": "Fishermen — cyclone insurance + trawlers",
-    "desc": "Provide dedicated insurance against cyclone losses; supply modern trawlers.",
+    "title": "Fishermen insurance",
+    "desc": "Dedicated insurance against cyclone losses.",
     "timeline_text": "5 years",
     "days": 1825
   }

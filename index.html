@@ -6,6 +6,9 @@
     <title>WB 2026 - Manifesto Tracker</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/2950/2950137.png">
+    <meta name="theme-color" content="#FF9933">
 </head>
 <body>
     <header>
@@ -20,12 +23,21 @@
         <div class="container">
             <div class="party-tabs">
                 <button class="party-tab active" data-party="bjp">BJP Sankalp Patra</button>
-                <button class="party-tab" data-party="aitmc">AITMC Promises</button>
+                <button class="party-tab" data-party="big">Big Promises</button>
+                <button class="party-tab" data-party="aitmc">AITMC Monitoring</button>
             </div>
         </div>
     </div>
 
     <main class="container">
+        <!-- Big Promises Visualization -->
+        <div id="big-section" class="party-section hidden">
+            <h2 style="margin-bottom: 25px; text-align: center;">5-Year Vision: Major Pledges</h2>
+            <div id="big-promises-container" class="big-promises-grid">
+                <!-- Big cards injected here -->
+            </div>
+        </div>
+
         <!-- BJP Dashboard Section -->
         <div id="bjp-section" class="party-section">
             <section id="bjp-stats" class="stats-grid hidden">
@@ -71,6 +83,13 @@
         </div>
     </footer>
 
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js');
+            });
+        }
+    </script>
     <script src="app.js"></script>
 </body>
 </html>
