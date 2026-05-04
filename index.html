@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WB 2026 - Manifesto Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>West Bengal 2026</h1>
+            <p class="subtitle">Election Manifesto & Completion Status Tracker</p>
+            <div id="global-status" class="global-badge">Not Yet Started</div>
+        </div>
+    </header>
+
+    <div class="main-tabs-container">
+        <div class="container">
+            <div class="party-tabs">
+                <button class="party-tab active" data-party="bjp">BJP Sankalp Patra</button>
+                <button class="party-tab" data-party="aitmc">AITMC Promises</button>
+            </div>
+        </div>
+    </div>
+
+    <main class="container">
+        <!-- BJP Dashboard Section -->
+        <div id="bjp-section" class="party-section">
+            <section id="bjp-stats" class="stats-grid hidden">
+                <div class="stat-card bjp">
+                    <span class="stat-label">Days Since Start</span>
+                    <span id="days-elapsed" class="stat-value">0</span>
+                </div>
+                <div class="stat-card bjp">
+                    <span class="stat-label">Promises Completed</span>
+                    <span id="promises-done" class="stat-value">0</span>
+                </div>
+                <div class="stat-card bjp">
+                    <span class="stat-label">Start Date (Config)</span>
+                    <span id="display-start-date" class="stat-value small">---</span>
+                </div>
+            </section>
+
+            <div class="filter-bar">
+                <button class="filter-btn active" data-category="all">All</button>
+                <button class="filter-btn" data-category="Sankalp Patra">Sankalp Patra</button>
+                <button class="filter-btn" data-category="Modi Guarantees">Modi Guarantees</button>
+                <button class="filter-btn" data-category="Extended">Extended</button>
+            </div>
+
+            <div id="bjp-promises-container" class="promises-list">
+                <!-- Promises will be injected here -->
+            </div>
+        </div>
+
+        <!-- AITMC Dashboard Section -->
+        <div id="aitmc-section" class="party-section hidden">
+            <div class="inactive-notice">
+                <h3>AITMC Monitoring</h3>
+                <p>Status tracking for AITMC is currently in monitoring mode.</p>
+            </div>
+            <div id="aitmc-promises-container" class="promises-list"></div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Update <strong>config.json</strong> manually to change dates (Format: YYYY-MM-DD).</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

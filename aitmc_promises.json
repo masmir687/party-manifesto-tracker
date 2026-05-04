@@ -1,0 +1,66 @@
+[
+  {
+    "id": "T1",
+    "category": "Social Welfare",
+    "title": "Lakshmir Bhandar Expansion",
+    "desc": "Increase monthly allowance for women beneficiaries and expand coverage to include more families.",
+    "timeline_text": "5 years",
+    "days": 1825
+  },
+  {
+    "id": "T2",
+    "category": "Youth",
+    "title": "Student Credit Card Limit Hike",
+    "desc": "Raise the limit of the Student Credit Card scheme and simplify the loan approval process.",
+    "timeline_text": "5 years",
+    "days": 1825
+  },
+  {
+    "id": "T3",
+    "category": "Health",
+    "title": "Swasthya Sathi 2.0",
+    "desc": "Upgrade healthcare infrastructure and expand the list of empanelled hospitals for cashless treatment.",
+    "timeline_text": "5 years",
+    "days": 1825
+  },
+  {
+    "id": "T4",
+    "category": "Agriculture",
+    "title": "Krishak Bandhu Arrears & Bonus",
+    "desc": "Immediate disbursement of pending dues and introduction of a seasonal bonus for farmers.",
+    "timeline_text": "1 year",
+    "days": 365
+  },
+  {
+    "id": "T5",
+    "category": "Infrastructure",
+    "title": "Pathashree 3.0",
+    "desc": "Reconstruction and maintenance of 20,000 km of rural roads across all districts.",
+    "timeline_text": "2 years",
+    "days": 730
+  },
+  {
+    "id": "T6",
+    "category": "Industry",
+    "title": "Silicon Valley Hub (Kolkata)",
+    "desc": "Attract global tech giants to the New Town Silicon Valley project and create 5 lakh IT jobs.",
+    "timeline_text": "5 years",
+    "days": 1825
+  },
+  {
+    "id": "T7",
+    "category": "Social Welfare",
+    "title": "Duare Sarkar Permanent Centers",
+    "desc": "Convert periodic Duare Sarkar camps into permanent neighborhood service centers.",
+    "timeline_text": "1 year",
+    "days": 365
+  },
+  {
+    "id": "T8",
+    "category": "Education",
+    "title": "Free Tablets for Class 11 & 12",
+    "desc": "Continuation and expansion of the Taruner Swapno scheme to all higher secondary students.",
+    "timeline_text": "Annual",
+    "days": 365
+  }
+]

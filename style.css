@@ -1,0 +1,103 @@
+:root {
+    --bjp-primary: #FF9933;
+    --aitmc-primary: #33cc33;
+    --success: #138808;
+    --warning: #ffa502;
+    --danger: #ff4757;
+    --bg: #f4f7f6;
+    --text: #2d3436;
+    --card-bg: #ffffff;
+    --radius: 12px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+.container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+
+header {
+    background: linear-gradient(135deg, #2d3436, #000);
+    color: white;
+    padding: 50px 0;
+    text-align: center;
+}
+
+.global-badge {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 5px 20px;
+    background: #636e72;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.main-tabs-container { background: white; border-bottom: 1px solid #ddd; position: sticky; top: 0; z-index: 10; }
+.party-tabs { display: flex; justify-content: center; }
+.party-tab {
+    padding: 20px; border: none; background: none; font-weight: 600; cursor: pointer;
+    border-bottom: 4px solid transparent; color: #636e72; transition: 0.3s;
+}
+.party-tab.active[data-party="bjp"] { border-bottom-color: var(--bjp-primary); color: var(--bjp-primary); }
+.party-tab.active[data-party="aitmc"] { border-bottom-color: var(--aitmc-primary); color: var(--aitmc-primary); }
+
+main { padding: 40px 0; }
+.hidden { display: none !important; }
+
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 40px; }
+.stat-card { background: white; padding: 20px; border-radius: var(--radius); text-align: center; border-bottom: 4px solid #ddd; }
+.stat-card.bjp { border-bottom-color: var(--bjp-primary); }
+.stat-label { display: block; font-size: 0.85rem; color: #636e72; }
+.stat-value { font-size: 1.8rem; font-weight: 700; color: var(--bjp-primary); }
+
+.filter-bar { display: flex; gap: 10px; margin-bottom: 30px; overflow-x: auto; }
+.filter-btn { padding: 8px 18px; border-radius: 20px; border: 1px solid #ddd; background: white; cursor: pointer; }
+.filter-btn.active { background: var(--bjp-primary); color: white; border-color: var(--bjp-primary); }
+
+.promises-list { display: grid; gap: 20px; }
+.promise-card {
+    background: white; padding: 25px; border-radius: var(--radius);
+    border-left: 6px solid #dfe6e9; transition: 0.2s;
+}
+
+/* Status Coloring */
+.promise-card.not-started { border-left-color: #b2bec3; opacity: 0.7; }
+.promise-card.in-progress { border-left-color: var(--bjp-primary); }
+.promise-card.urgent { border-left-color: #e17055; background: #fffaf0; }
+.promise-card.overdue { border-left-color: var(--danger); background: #fff5f5; }
+.promise-card.completed-success { border-left-color: var(--success); background: #f0fff4; }
+.promise-card.completed-late { border-left-color: var(--warning); background: #fffbeb; }
+
+.card-header { display: flex; justify-content: space-between; margin-bottom: 10px; }
+.promise-id-badge {
+    background: #2d3436;
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 800;
+    padding: 2px 8px;
+    border-radius: 4px;
+    min-width: 24px;
+    text-align: center;
+}
+.category-tag { font-size: 0.75rem; font-weight: 700; color: #b2bec3; text-transform: uppercase; }
+.promise-title { font-size: 1.2rem; margin: 5px 0; }
+.timeline-badge { background: #f1f2f6; padding: 3px 10px; border-radius: 5px; font-size: 0.8rem; color: #636e72; height: fit-content; }
+
+.status-label { display: inline-block; font-size: 0.75rem; font-weight: 800; padding: 2px 8px; border-radius: 4px; margin-bottom: 10px; background: #eee; }
+.status-label.success { background: var(--success); color: white; }
+.status-label.warning { background: var(--warning); color: white; }
+.status-label.danger { background: var(--danger); color: white; }
+
+.status-desc { font-size: 0.85rem; font-weight: 600; color: #2d3436; }
+
+.progress-container { background: #eee; height: 8px; border-radius: 4px; overflow: hidden; margin-top: 15px; }
+.progress-bar { height: 100%; background: var(--success); }
+.progress-label { display: flex; justify-content: space-between; font-size: 0.75rem; margin-top: 5px; color: #636e72; }
+
+footer { text-align: center; padding: 40px 0; color: #636e72; border-top: 1px solid #ddd; }
