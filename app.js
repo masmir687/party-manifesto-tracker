@@ -2,26 +2,32 @@ let bjpPromises = [];
 let aitmcPromises = [];
 let config = null;
 
+// Mapping for Group Headings
+const GROUP_METADATA = {
+    "2": { title: "Salary & Pay Commission", timeline: "Within 45 Days" },
+    "3": { title: "Employment & Youth Support", timeline: "5 Years" },
+    "4": { title: "Women's Safety & Empowerment", timeline: "On forming government" },
+    "8": { title: "Legal Reform & Border Security", timeline: "6 Months" },
+    "9": { title: "Industrial Revival (Tea & Jute)", timeline: "5 Years" },
+    "10": { title: "Healthcare Infrastructure", timeline: "5 Years" },
+    "14": { title: "Cultural Heritage & Religious Law", timeline: "5 Years" }
+};
+
 async function init() {
     try {
         const configRes = await fetch('config.json');
         config = await configRes.json();
-
         const bjpRes = await fetch('promises.json');
         bjpPromises = await bjpRes.json();
-
         const aitmcRes = await fetch('aitmc_promises.json');
         aitmcPromises = await aitmcRes.json();
-
         setupTabs();
-        
         if (config.startDate) {
             document.getElementById('global-status').textContent = "Tracking Active";
             document.getElementById('global-status').style.background = "#138808";
             document.getElementById('bjp-stats').classList.remove('hidden');
             updateStats();
         }
-
         renderBJP('all');
         renderAITMC();
     } catch (err) {
@@ -56,19 +62,14 @@ function renderBJP(category) {
     const container = document.getElementById('bjp-promises-container');
     container.innerHTML = '';
     const filtered = category === 'all' ? bjpPromises : bjpPromises.filter(p => p.category === category);
-    
     const renderedGroups = new Set();
-
     filtered.forEach(p => {
         if (p.parentId) {
             if (!renderedGroups.has(p.parentId)) {
-                // Create Big Group Card
-                const groupCard = createBigGroupCard(p.parentId, filtered);
-                container.appendChild(groupCard);
+                container.appendChild(createBigGroupCard(p.parentId, filtered));
                 renderedGroups.add(p.parentId);
             }
         } else {
-            // Render standalone promise
             container.appendChild(createPromiseCard(p));
         }
     });
@@ -77,25 +78,23 @@ function renderBJP(category) {
 function createBigGroupCard(parentId, allPromises) {
     const groupCard = document.createElement('div');
     groupCard.className = 'big-group-card';
-    
     const subPromises = allPromises.filter(p => p.parentId === parentId);
+    const meta = GROUP_METADATA[parentId] || { title: `Group ${parentId}`, timeline: "TBD" };
     
-    // Group Status Calculation
     let completedCount = 0;
     subPromises.forEach(p => { if (config.completedDates[p.id]) completedCount++; });
-    
     const total = subPromises.length;
     const halfStep = Math.ceil(total / 2);
-    let halfFilled = '';
-    let fullFilled = '';
-    if (completedCount >= halfStep) halfFilled = 'filled';
-    else if (completedCount > 0) halfFilled = 'active';
-    if (completedCount === total) fullFilled = 'filled';
+    let halfFilled = (completedCount >= halfStep) ? 'filled' : (completedCount > 0 ? 'active' : '');
+    let fullFilled = (completedCount === total) ? 'filled' : '';
 
     groupCard.innerHTML = `
         <div class="group-header">
-            <span class="promise-id-badge">${parentId}</span>
-            <h2 class="group-title">Combined Promise Group</h2>
+            <div style="display: flex; justify-content: space-between; width: 100%; align-items: center; margin-bottom: 10px;">
+                <span class="promise-id-badge" style="background: var(--bjp-primary)">${parentId}</span>
+                <span class="timeline-badge" style="background: #2d3436; color: white;">Target: ${meta.timeline}</span>
+            </div>
+            <h2 class="group-title">${meta.title}</h2>
             <div class="viz-steps">
                 <div class="step filled">0</div>
                 <div class="step ${halfFilled}">50%</div>
@@ -106,10 +105,7 @@ function createBigGroupCard(parentId, allPromises) {
     `;
 
     const childrenContainer = groupCard.querySelector('.group-children');
-    subPromises.forEach(p => {
-        childrenContainer.appendChild(createPromiseCard(p));
-    });
-
+    subPromises.forEach(p => { childrenContainer.appendChild(createPromiseCard(p)); });
     return groupCard;
 }
 
