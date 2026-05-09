@@ -23,8 +23,15 @@ async function init() {
         aitmcPromises = await aitmcRes.json();
         setupTabs();
         if (config.startDate) {
-            document.getElementById('global-status').textContent = "Tracking Active";
-            document.getElementById('global-status').style.background = "#138808";
+            const start = new Date(config.startDate);
+            const now = new Date();
+            if (now < start) {
+                document.getElementById('global-status').textContent = "Starting Soon";
+                document.getElementById('global-status').style.background = "#2d3436";
+            } else {
+                document.getElementById('global-status').textContent = "Tracking Active";
+                document.getElementById('global-status').style.background = "#138808";
+            }
             document.getElementById('bjp-stats').classList.remove('hidden');
             updateStats();
         }
@@ -50,7 +57,12 @@ function setupTabs() {
 function updateStats() {
     const start = new Date(config.startDate);
     const now = new Date();
-    const diffDays = Math.floor(Math.abs(now - start) / (1000 * 60 * 60 * 24));
+    
+    // Normalize to midnight for accurate day counting
+    const startMidnight = new Date(start).setHours(0, 0, 0, 0);
+    const nowMidnight = new Date(now).setHours(0, 0, 0, 0);
+    const diffDays = Math.max(0, Math.floor((nowMidnight - startMidnight) / (1000 * 60 * 60 * 24)));
+    
     let completedCount = 0;
     Object.values(config.completedDates).forEach(val => { if(val) completedCount++; });
     document.getElementById('days-elapsed').textContent = diffDays;
@@ -122,9 +134,14 @@ function createPromiseCard(p) {
         statusClass = 'not-started';
     } else if (completionDateStr) {
         const completed = new Date(completionDateStr);
-        const deadline = new Date(startDate.getTime() + (p.days * 24 * 60 * 60 * 1000));
-        const daysToComplete = Math.floor((completed - startDate) / (1000 * 60 * 60 * 24));
-        if (completed <= deadline) {
+        // Normalize for completion calculations
+        const startMid = new Date(startDate).setHours(0, 0, 0, 0);
+        const compMid = new Date(completed).setHours(0, 0, 0, 0);
+        
+        const deadline = new Date(startMid + (p.days * 24 * 60 * 60 * 1000));
+        const daysToComplete = Math.floor((compMid - startMid) / (1000 * 60 * 60 * 24));
+        
+        if (compMid <= deadline.getTime()) {
             statusHTML = `<span class="status-label success">COMPLETED</span><p class="status-desc">Took ${daysToComplete} days</p>`;
             statusClass = 'completed-success';
         } else {
@@ -134,9 +151,13 @@ function createPromiseCard(p) {
         }
     } else {
         const now = new Date();
-        const diffDays = Math.floor((now - startDate) / (1000 * 60 * 60 * 24));
+        const startMid = new Date(startDate).setHours(0, 0, 0, 0);
+        const nowMid = new Date(now).setHours(0, 0, 0, 0);
+        
+        const diffDays = Math.max(0, Math.floor((nowMid - startMid) / (1000 * 60 * 60 * 24)));
         const remaining = p.days - diffDays;
         const progress = Math.min(100, Math.max(0, (diffDays / p.days) * 100));
+        
         if (remaining >= 0) {
             statusHTML = `<div class="progress-container"><div class="progress-bar" style="width: ${progress}%"></div></div><div class="progress-label"><span>${Math.round(progress)}%</span><span>${remaining}d left</span></div>`;
             statusClass = remaining < 30 ? 'urgent' : 'in-progress';
