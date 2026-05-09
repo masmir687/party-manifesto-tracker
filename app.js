@@ -46,9 +46,17 @@ async function init() {
 function renderSankalp() {
     const container = document.getElementById('big-promises-container');
     container.innerHTML = '';
-    // Display all BJP promises without group headers
+    const renderedGroups = new Set();
+    
     bjpPromises.forEach(p => {
-        container.appendChild(createPromiseCard(p));
+        if (p.parentId) {
+            if (!renderedGroups.has(p.parentId)) {
+                container.appendChild(createBigGroupCard(p.parentId, bjpPromises, false));
+                renderedGroups.add(p.parentId);
+            }
+        } else {
+            container.appendChild(createPromiseCard(p));
+        }
     });
 }
 
@@ -97,7 +105,7 @@ function renderBJP(category) {
     });
 }
 
-function createBigGroupCard(parentId, allPromises) {
+function createBigGroupCard(parentId, allPromises, showChildren = true) {
     const groupCard = document.createElement('div');
     groupCard.className = 'big-group-card';
     const subPromises = allPromises.filter(p => p.parentId === parentId);
@@ -111,7 +119,7 @@ function createBigGroupCard(parentId, allPromises) {
     let fullFilled = (completedCount === total) ? 'filled' : '';
 
     groupCard.innerHTML = `
-        <div class="group-header">
+        <div class="group-header" style="${!showChildren ? 'border-bottom: none; margin-bottom: 0; padding-bottom: 0;' : ''}">
             <div style="display: flex; justify-content: space-between; width: 100%; align-items: center; margin-bottom: 10px;">
                 <span class="promise-id-badge" style="background: var(--bjp-primary)">${parentId}</span>
                 <span class="timeline-badge" style="background: #2d3436; color: white;">Target: ${meta.timeline}</span>
@@ -123,11 +131,13 @@ function createBigGroupCard(parentId, allPromises) {
                 <div class="step ${fullFilled}">100%</div>
             </div>
         </div>
-        <div class="group-children"></div>
+        ${showChildren ? '<div class="group-children"></div>' : ''}
     `;
 
-    const childrenContainer = groupCard.querySelector('.group-children');
-    subPromises.forEach(p => { childrenContainer.appendChild(createPromiseCard(p)); });
+    if (showChildren) {
+        const childrenContainer = groupCard.querySelector('.group-children');
+        subPromises.forEach(p => { childrenContainer.appendChild(createPromiseCard(p)); });
+    }
     return groupCard;
 }
 
