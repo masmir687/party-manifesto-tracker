@@ -25,7 +25,11 @@ async function init() {
         if (config.startDate) {
             const start = new Date(config.startDate);
             const now = new Date();
-            if (now < start) {
+            // Compare dates normalized to midnight
+            const startMid = new Date(start).setHours(0, 0, 0, 0);
+            const nowMid = new Date(now).setHours(0, 0, 0, 0);
+            
+            if (nowMid < startMid) {
                 document.getElementById('global-status').textContent = "Starting Soon";
                 document.getElementById('global-status').style.background = "#2d3436";
             } else {
@@ -43,15 +47,100 @@ async function init() {
     }
 }
 
+function createGroupPromiseCard(gp) {
+    const card = document.createElement('div');
+    card.className = 'promise-card';
+    
+    const completions = gp.subIds.map(id => config.completedDates[id]);
+    const allCompleted = completions.every(d => d !== null);
+    const completedCount = completions.filter(d => d !== null).length;
+    const totalCount = gp.subIds.length;
+    
+    const startDate = config.startDate ? new Date(config.startDate) : null;
+    let statusHTML = '';
+    let statusClass = '';
+
+    if (!startDate) {
+        statusHTML = '<span class="status-label">NOT STARTED</span>';
+        statusClass = 'not-started';
+    } else if (allCompleted) {
+        const latestCompDate = new Date(Math.max(...completions.map(d => new Date(d))));
+        const startMid = new Date(startDate).setHours(0, 0, 0, 0);
+        const compMid = new Date(latestCompDate).setHours(0, 0, 0, 0);
+        const deadline = new Date(startMid + (gp.days * 24 * 60 * 60 * 1000));
+        const daysToComplete = Math.floor((compMid - startMid) / (1000 * 60 * 60 * 24));
+        
+        if (compMid <= deadline.getTime()) {
+            statusHTML = `<span class="status-label success">COMPLETED</span><p class="status-desc">Took ${daysToComplete} days</p>`;
+            statusClass = 'completed-success';
+        } else {
+            const delay = daysToComplete - gp.days;
+            statusHTML = `<span class="status-label warning">LATE</span><p class="status-desc">${delay} days delay</p>`;
+            statusClass = 'completed-late';
+        }
+    } else {
+        const now = new Date();
+        const startMid = new Date(startDate).setHours(0, 0, 0, 0);
+        const nowMid = new Date(now).setHours(0, 0, 0, 0);
+        const diffDays = Math.max(0, Math.floor((nowMid - startMid) / (1000 * 60 * 60 * 24)));
+        const remaining = gp.days - diffDays;
+        
+        const progress = (completedCount / totalCount) * 100;
+        
+        if (remaining >= 0) {
+            statusHTML = `<div class="progress-container"><div class="progress-bar" style="width: ${progress}%"></div></div><div class="progress-label"><span>${Math.round(progress)}% (${completedCount}/${totalCount})</span><span>${remaining}d left</span></div>`;
+            statusClass = remaining < 30 ? 'urgent' : 'in-progress';
+        } else {
+            statusHTML = `<span class="status-label danger">OVERDUE</span><p class="status-desc">${Math.abs(remaining)}d late</p>`;
+            statusClass = 'overdue';
+        }
+    }
+
+    card.classList.add(statusClass);
+    card.innerHTML = `
+        <div class="card-header">
+            <div>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <span class="promise-id-badge">${gp.id}</span>
+                    <span class="category-tag">${gp.category}</span>
+                </div>
+                <h3 class="promise-title" style="font-size: 1.05rem;">${gp.title}</h3>
+            </div>
+            <span class="timeline-badge">${gp.timeline_text}</span>
+        </div>
+        <p class="promise-desc" style="font-size: 0.85rem;">${gp.desc}</p>
+        <div class="status-area">${statusHTML}</div>
+    `;
+    return card;
+}
+
 function renderSankalp() {
     const container = document.getElementById('big-promises-container');
     container.innerHTML = '';
+    const groups = {};
+    bjpPromises.forEach(p => {
+        if (p.parentId) {
+            if (!groups[p.parentId]) groups[p.parentId] = [];
+            groups[p.parentId].push(p);
+        }
+    });
+
     const renderedGroups = new Set();
-    
     bjpPromises.forEach(p => {
         if (p.parentId) {
             if (!renderedGroups.has(p.parentId)) {
-                container.appendChild(createBigGroupCard(p.parentId, bjpPromises, false));
+                const subs = groups[p.parentId];
+                const meta = GROUP_METADATA[p.parentId] || { title: `Group ${p.parentId}`, timeline: "TBD" };
+                const groupP = {
+                    id: p.parentId,
+                    category: subs[0].category,
+                    title: subs.map(s => s.title).join(' + '),
+                    desc: subs.map(s => s.desc).join('; '),
+                    timeline_text: meta.timeline,
+                    days: Math.min(...subs.map(s => s.days)),
+                    subIds: subs.map(s => s.id)
+                };
+                container.appendChild(createGroupPromiseCard(groupP));
                 renderedGroups.add(p.parentId);
             }
         } else {
@@ -85,7 +174,7 @@ function updateStats() {
     Object.values(config.completedDates).forEach(val => { if(val) completedCount++; });
     document.getElementById('days-elapsed').textContent = diffDays;
     document.getElementById('promises-done').textContent = completedCount;
-    document.getElementById('display-start-date').textContent = start.toLocaleDateString();
+    document.getElementById('display-start-date').textContent = start.toISOString().split('T')[0];
 }
 
 function renderBJP(category) {
