@@ -36,10 +36,20 @@ async function init() {
             updateStats();
         }
         renderBJP('all');
+        renderSankalp();
         renderAITMC();
     } catch (err) {
         console.error('Initialization error:', err);
     }
+}
+
+function renderSankalp() {
+    const container = document.getElementById('big-promises-container');
+    container.innerHTML = '';
+    // Display all BJP promises without group headers
+    bjpPromises.forEach(p => {
+        container.appendChild(createPromiseCard(p));
+    });
 }
 
 function setupTabs() {
